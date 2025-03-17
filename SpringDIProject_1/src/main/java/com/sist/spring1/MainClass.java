@@ -3,21 +3,24 @@ package com.sist.spring1;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.support.GenericApplicationContext;
+import org.springframework.context.support.GenericXmlApplicationContext;
 
 public class MainClass {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+        //ApplicationContext app=
+        		//new ClassPathXmlApplicationContext("app3.xml");
 		GenericApplicationContext app=
-				new GenericApplicationContext("app3.xml");
-//		ApplicationContext app=
-//				new ClassPathXmlApplicationContext("app3.xml");
-		Student std=(Student)app.getBean("std");
-		System.out.println("«–π¯:"+std.getHakbun());
-		System.out.println("¿Ã∏ß:"+std.getHuman().getName());
-		System.out.println("º∫∫∞:"+std.getHuman().getSex());
-		System.out.println("¡÷º“:"+std.getHuman().getAddress());
-		app.close();
+				new GenericXmlApplicationContext("app3.xml");
+		
+        Student std=(Student)app.getBean("std");
+        System.out.println("ÌïôÎ≤à:"+std.getHakbun());
+        System.out.println("Ïù¥Î¶Ñ:"+std.getHuman().getName());
+        System.out.println("ÏÑ±Î≥Ñ:"+std.getHuman().getSex());
+        System.out.println("Ï£ºÏÜå:"+std.getHuman().getAddress());
+        app.close();// System.gc()
+        
 	}
 
 }

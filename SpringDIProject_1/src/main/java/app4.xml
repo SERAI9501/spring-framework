@@ -27,10 +27,11 @@
 		p:dataSource-ref="ds"
 	/>
 	<!-- 구현 -->
-	<bean id="mapper"class="org.mybatis.spring.mapper.MapperFactoryBean"
+	<bean id="mapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
 		p:sqlSessionFactory-ref="ssf"
 		p:mapperInterface="com.sist.spring2.EmpMapper"
 	/>
+	
 	<bean id="dao" class="com.sist.spring2.EmpDAO"
 		p:mapper-ref="mapper"
 	/>
