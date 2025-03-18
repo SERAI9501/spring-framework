@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- 오라클 정보 읽기 : BasicDataSource
+		 diriverName / url / username / password
+		 
+		 Spring => XMl
+		           === 파일을 자바로 변경했음
+		 Spring-Boot : properties / yml
+		 
+		 
+	-->
+	<bean id="ds" class="org.apache.commons.dbcp.BasicDataSource"
+		p:driverClassName="oracle.jdbc.drivaer.OracleDriver"
+		p:url="jdbc:oracle:thin:@localhost:1521:XE"
+		p:username="hr"
+		p:password="happy"
+		p:maxActive="10"
+		p:maxIdle="10"
+		p:maxWait="-1"
+	/>
+	<bean id="dataSource" 
+          class="net.sf.log4jdbc.Log4jdbcProxyDataSource"> 
+      <constructor-arg ref="ds" /> 
+      <property name="logFormatter"> 
+        <bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter"> 
+        <property name="loggingType" value="MULTI_LINE" /> 
+        <property name="sqlPrefix" value="SQL : "/> 
+        </bean> 
+      </property> 
+    </bean>
+
+    <!-- MyBatis연결 -->
+    <bean id="ssf" class="org.mybatis.spring.SqlSessionFactoryBean"
+        p:dataSource-ref="dataSource"
+    />
+	<bean id="mapper" class="org.mybaisspring.mapper.MapperFactoryBoan"
+	<!-- Mybatis로 전송 -->
+	<bean id="ssf" class="org.mybatis.spring.sqlSessionFactoryBean"
+		p:dataSource-ref="ds"
+		p:configLocation="classpath:Config.xml"
+	></bean>
+	<mybatis-spring:scan base-po
+	<bean id="dao" class="com.sist.main.EmpDAO"
+		p:sqlSessionFactory-ref="ds"
+	/>
+</beans>
