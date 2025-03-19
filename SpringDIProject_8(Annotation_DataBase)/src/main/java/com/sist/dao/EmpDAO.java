@@ -24,11 +24,11 @@ public class EmpDAO {
   private EmpMapper mapper;
   
   
-  public List<EmpVO> empListData();
+  public List<EmpVO> empListData()
   {
 	return mapper.empListData(); 
   }
-  public EmpVO empDetailData(int empno);
+  public EmpVO empDetailData(int empno)
   {
 	return mapper.empDetailData(empno);  
   }

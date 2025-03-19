@@ -16,9 +16,9 @@ public interface EmpMapper {
 	 *  public List<EmpVO> empListData(); => 자동 구현이 된다. 
 	 */
 	@Select("SELECT empno,ename,job,sal,"
-			+ "TO_CHAR(hiredate,'YYYY-MM-DD') as dbday "
-			+ "FROM emp")
-	public List<EmpVO> empListData();
-	//     resultType    id      parameterType
-	//     ==> 매개변수를 여러개 사용이 가능
-}
+			   +"TO_CHAR(hiredate,'YYYY-MM-DD') as dbday "
+			   +"FROM emp")
+		public List<EmpVO> empListData();
+		//     resultType     id      parameterType
+		//     ==> 매개변수를 여러개 사용이 가능 
+	}

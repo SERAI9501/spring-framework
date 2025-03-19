@@ -7,23 +7,23 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	<!-- 오라클 정보 전송 = 묶어서 한번에 전송 DataSource-->
 	<bean id="ds" class="org.apache.commons.dbcp.BasicDataSource"
-		p:driverClassName="oracle.jdbc.drivaer.OracleDriver"
-		p:url="jdbc:oracle:thin:@localhost:1521:XE"
-		p:username="hr"
-		p:password="happy"
-	/>
+       p:driverClassName="oracle.jdbc.driver.OracleDriver"
+       p:url="jdbc:oracle:thin:@localhost:1521:XE"
+       p:username="hr"
+       p:password="happy"
+    />
 	<!-- SqlSessionFactory : ssf -->
-	<bean id="ssf" class="org.mybatis.spring.SqlSessionFactoryBean"
-		p:dataSource-ref="ds"
-	/>
+	 <bean id="ssf" class="org.mybatis.spring.SqlSessionFactoryBean"
+       p:dataSource-ref="ds"
+    />
 	<!-- Mapper 구현 -->
 	<bean id="mapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
-		p:sqlSessionFactory-ref="ssf"
-		p:mapperInterface="com.sist.mapper.EmpMapper"
-	/>
+       p:sqlSessionFactory-ref="ssf"
+       p:mapperInterface="com.sist.mapper.EmpMapper"
+    />
 	<!-- <mybatis-spring:scan base-package="com.sist.mapper" factory-ref=""/> -->
 	<!-- DAO에서 구현된 Mapper를 받는다 -->
-	<bean id="dao" class="com.sist.dao.EmpDAO"
-	 p:mapper-ref="mapper"
-	/>
+	 <bean id="dao" class="com.sist.dao.EmpDAO"
+      p:mapper-ref="mapper"
+     />
 </beans>

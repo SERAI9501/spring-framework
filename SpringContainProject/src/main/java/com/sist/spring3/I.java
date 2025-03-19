@@ -1,7 +1,6 @@
 package com.sist.spring3;
 
 public interface I {
-	public static sayHello{
-		
-	}
+	public void sayHello();
+	
 }

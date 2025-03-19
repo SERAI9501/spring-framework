@@ -17,22 +17,30 @@
 	     
 	-->
 	<bean id="ds" class="org.apache.commons.dbcp.BasicDataSource"
-	p:driverClassName="oracle.jdbc.driver.OracleDriver"
-	p:url="jdbc:oracle:thin:@localhost:1521:XE"
-	p:username="hr"
-	p:password="happy"
-	/>
-	<!-- myBatis -->
-	<bean id="ssf" class="org.mybatis.spring.SqlSessionFactoryBean"
-		p:dataSource-ref="ds"
-	/>
-	<!-- 구현 -->
-	<bean id="mapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
-		p:sqlSessionFactory-ref="ssf"
-		p:mapperInterface="com.sist.spring2.EmpMapper"
-	/>
-	
-	<bean id="dao" class="com.sist.spring2.EmpDAO"
-		p:mapper-ref="mapper"
-	/>
+       p:driverClassName="oracle.jdbc.driver.OracleDriver"
+       p:url="jdbc:oracle:thin:@localhost:1521:XE"
+       p:username="hr"
+       p:password="happy"
+    />
+    <!-- 
+         class SqlSessionFactoryBean
+         {
+            DataSource dataSource; => ref
+         }
+     -->
+    <!-- myBatis -->
+    <bean id="ssf" class="org.mybatis.spring.SqlSessionFactoryBean"
+       p:dataSource-ref="ds"
+    />
+    
+    <!-- 구현 -->
+    <bean id="mapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+      p:sqlSessionFactory-ref="ssf"
+      p:mapperInterface="com.sist.spring2.EmpMapper"
+    />
+    
+    <bean id="dao" class="com.sist.spring2.EmpDAO"
+       p:mapper-ref="mapper"
+    />
+ 
 </beans>
