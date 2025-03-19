@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean id="mem" class="com.sist.member.MemberManager"/>
+	<!-- 
+	 	 map.put("mem",new MemberManager()) = 빈을 쓰는것과 동시에 이렇게 저장된다.
+	 	 map.put("sa",new SawonManager()) => DL = 아이디를 가지고 뒤에 객체 주소를 찾아주는 방식을 말한다
+	 	 map.put("goods",new goodsManager())
+	 	 맵에다 저장해서 뿌려준다. 그래서 위의 과정이 bean이랑 같다.
+	 	 앞이 키 뒤가 값인데 값에 객체 주소가 저장된다. = 앞에 아이디가 저장 뒤에 bean객체 주소가 저장된다.
+	 	 
+	 	 스프링에서 컨테이너는(생성 -> 초기화 -> 소멸) 까지 관리한다. 
+	 -->
+	<bean id="sa" class="com.sist.sawon.SawonManager"/>
+	<bean id="goods" class="com.sist.goods.GoodsManager"/>
+</beans>

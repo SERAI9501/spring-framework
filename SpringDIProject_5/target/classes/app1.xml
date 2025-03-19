@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	<context:component-scan base-package="com.sist.*"/>
+	<!-- 
+	 Component로 부터 다 상속을 받았다 그래서 Component로만으로도 불러올 수 있다.
+	 구분하기 위해서 아래 처럼 나눴다.
+	 아래는 메모리할당 즉 객체 생성과 관련된 것
+	@Component : 일반 클래스
+	@Repository : DAO 클래스
+	@Service : BI => DAO여러개를 한번에 모아서 = DAO를 섞었을때 
+	@Controller : Model => 웹과 관련있음  |
+	@RestController : Model           |    |표시된 3개는 웹과 관련이 있음
+	@ControllerAdvice : 공통예외처리      |
+	@Configuration : XML대신 자바이용
+	
+	 DI 관련 있는 
+	@Autowired : 자동 주입
+	@PostConstruct : init-method
+	@PreDestroy : destory-method
+	@Resource : 객체 생성 => 사용이 안됨 (1.8버전까지 지원)
+	
+	어노테이션은 객체 생성,DI 와 관련있는 2종류가 있다.
+	
+	class A
+	{
+		private B b;
+		public void setB(B b)
+		{
+			this.b=b
+		}
+	}
+	<bean id="b" class="B"/>
+	<bean id="a" class="A"
+	 p:b-ref="b"/> 
+	   |set method
+	
+	위 클래스에서 아래 클래스로 변경된다.
+	  
+	 class A
+	{
+		@Autowired
+		private B b;
+	}
+	 -->
+</beans>
