@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sist.mapper.student-mapper">
+  <!-- 
+  		아래처럼 복잡한 SQL 문장 = XML 로 코딩하는게 낫다
+  	            +
+  		       단순한 SQL 문장 = Annotation
+       <select>
+         SELECT ~
+         WHERE ~
+          <if test="">
+            name LIKE...
+          </if>
+          <if test="">
+            subject LIKE...
+          </if>
+          <if test="">
+            content LIKE...
+          </if>
+       </select>
+       
+       @select("{<script>"
+        +...
+        +"<if test=\"\">"
+       +</script>}")
+   -->
+   <!-- 목록 / 상세보기 : SELECT = READ-->
+   <!-- 등록 : INSERT = CREATE-->
+   <!-- 수정 : UPDATE = UPDATE-->
+   <!-- 삭제 : DELETE = DELETE-->
+   
+   <select id="studentDetailData" resultType="StudentVO" parameterType="int">
+	SELECT * FROM student 
+	WHERE hakbun=#{hakbun}
+   </select>
+   <!-- 리절트 타입은 없고 결과값만 있다 -->
+   <insert id="studentInsert" parameterType="StudentVO">
+   <!-- 누구것을 증가시킬 거냐 = keyProperty 
+       keyProperty먼저 수행하고 즉 증가된 값을 증가하고 뒤에  VALUES 값을 채워준다-->
+    <selectKey keyProperty="hakbun" resultType="int" order="BEFORE">
+     SELECT NVL(MAX(hakbun)+1,1) as hakbun FROM student
+    </selectKey>
+     INSERT INTO student VALUES(
+     #{hakbun},#{name},#{kor},#{eng},#{math})
+   </insert>
+   <delete id="studentDelete" parameterType="int">
+    DELETE FROM student
+    WHERE hakbun=#{hakbun}
+   </delete>
+   <update id="studentUpdate" parameterType="StudentVO">
+    UPDATE student SET
+    name=#{name},kor=#{kor},eng=#{eng},math=#{math}
+    WHERE hakbun=#{hakbun}
+   </update>
+</mapper>
