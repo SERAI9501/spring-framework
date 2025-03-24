@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	<!-- 1.AOP 등록 //현재는 안만듬-->
+	<!-- 2.사용자 정의 클래스 등록 -->
+	<context:component-scan base-package="com.sist.*"/>
+	<!-- 3.viewResolver 등록 => 찾아주는애 
+		p:prefix="/"  => 접두어
+		p:suffix=".jsp" => 접미어
+		
+		return "board/insert" 를 아래 애가 받아서 위에 기능 p:pre..+p:suf.. => /board/insert.jsp로 바꾼다
+	-->
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+		p:prefix="/"
+		p:suffix=".jsp"
+	/>
+	 <!-- 자바 전용이 아니기때문에 확장자가있다 즉 http등 여러 확장자를 사용 할 수 있다. -->
+
+</beans>
