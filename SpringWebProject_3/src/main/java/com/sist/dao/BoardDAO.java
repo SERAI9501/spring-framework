@@ -1,6 +1,7 @@
 package com.sist.dao;
 import java.util.*;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
@@ -36,5 +37,31 @@ public class BoardDAO {
 	public void boardInsert()
 	{
 		return mapper.boardInsert(null);
+	}
+	public BoardVO boardDetailData(int no)
+	{
+	   mapper.hitIncrement(no);
+	   return mapper.boardDetailData(no);
+	}
+	   
+	public BoardVO boardUpdateData(int no)
+	{
+	   return mapper.boardDetailData(no);
+	}
+	/*
+	 * @Delete("DELETE FROM freeboar "
+			+ "WHERE no=#{no}")
+	public void boardDelete(int no);
+	 */
+	public boolean boardDelete(int no,String pwd)
+	{
+		boolean bCheck=false;
+		String db_pwd=mapper.boardGetPassword(no);
+		if(encoder.matches(pwd, db_pwd))
+		{
+			bCheck=true;
+			mapper.boardDelete(no);
+		}
+		return bCheck;
 	}
 }
